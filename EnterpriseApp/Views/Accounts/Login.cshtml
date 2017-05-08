@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Login</h2>
+
+<form method="post" action="/Accounts/Login">
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" name="username" /></td>
+        </tr>
+
+        <tr>
+            <td>Password:</td>
+            <td> <input type="password" name="password" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Log in" />
+</form>
+<br />
+
+@if (ViewBag.Message != null)
+{
+    <label>@ViewBag.Message</label>
+}

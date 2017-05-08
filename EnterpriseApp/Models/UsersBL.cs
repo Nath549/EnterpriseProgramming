@@ -36,7 +36,7 @@ namespace EnterpriseApp.Models
                     }
                 }
 
-                catch
+                catch(Exception e)
                 {
                     return RegistrationEnum.ErrorOccurred;
 

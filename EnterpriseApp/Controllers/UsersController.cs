@@ -62,5 +62,58 @@ namespace DistProg.Controllers
             }
             return View();
         }
+
+        [Authorize]
+        public ActionResult Index()
+        {
+            UsersBL ub = new UsersBL();
+            IQueryable<User> um = ub.GetUsers(); 
+            return View(um);
+        }
+
+        [Authorize]
+        public ActionResult Delete(string username)
+        {
+            UsersBL ub = new UsersBL();
+            try
+            {
+                ub.DeleteUser(username);
+            }
+            catch(Exception e)
+            {
+                ViewBag.ErrorMessage = e;
+            }
+
+            ViewBag.Success = "User succesfully deleted!";
+            return View("Index");
+        }
+
+        [Authorize]
+        public ActionResult EditUser(string username)
+        {
+            UsersBL ub = new UsersBL();
+            User um = ub.GetUser(username); 
+            return View(um);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditUser(User u)
+        {
+            UsersBL ub = new UsersBL();
+            try
+            {
+                u.Password = Hashing.HashString(u.Password);
+                ub.EditUser(u);
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e;
+                return View();
+            }
+
+            ViewBag.Success = "User succesfully edited!";
+            return View();
+        }
     }
 }

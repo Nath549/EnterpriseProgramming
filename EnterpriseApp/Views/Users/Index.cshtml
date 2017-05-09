@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Common.User>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Author List</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Profile</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { username = item.Username })
+            </td>
+            <td>
+                @Html.ActionLink("EditUser", "EditUser", new { username = item.Username})
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="warning alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+@if(ViewBag.Success != null)
+{
+    <div class="warning alert-success">
+        @ViewBag.Success
+    </div>
+}

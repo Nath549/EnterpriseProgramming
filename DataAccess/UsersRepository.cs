@@ -46,5 +46,11 @@ namespace DataAccess
             Entity.Users.Remove(u);
             Entity.SaveChanges();
         }
+
+        public void EditUser(User u)
+        {
+            Entity.Entry(GetUser(u.Username)).CurrentValues.SetValues(u);
+            Entity.SaveChanges();
+        }
     }
 }

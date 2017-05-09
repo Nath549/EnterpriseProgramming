@@ -29,6 +29,12 @@
                     <a href="/Users/Register">Register</a>
                 </li>
             }
+            @if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                <li>
+                    <a href="/Users/">Show Authors</a>
+                </li>
+            }
         </ul>
     </nav>
 

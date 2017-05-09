@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Models\ArticlesBL.cs" />
     <Compile Include="Models\UsersBL.cs" />
+    <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Hashing.cs" />
   </ItemGroup>
@@ -168,6 +169,8 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\EditUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

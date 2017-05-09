@@ -49,6 +49,11 @@ namespace EnterpriseApp.Models
             }
         }
 
+        public void DeleteUser(string username)
+        {
+            ur.DeleteUser(ur.GetUser(username));
+        }
+
         public LoginEnum Login(string username, string password)
         {
             if (ur.AuthenticateUser(username, password))
@@ -59,6 +64,11 @@ namespace EnterpriseApp.Models
             {
                 return LoginEnum.InvalidCredentials;
             }
+        }
+
+        public void EditUser(User u)
+        {
+            ur.EditUser(u);
         }
     }
 }

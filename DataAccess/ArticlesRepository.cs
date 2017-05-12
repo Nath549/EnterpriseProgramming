@@ -23,5 +23,16 @@ namespace DataAccess
             Entity.Articles.Remove(a);
             Entity.SaveChanges();
         }
+
+        public Article GetArticle(int articleID)
+        {
+            return Entity.Articles.SingleOrDefault(x => x.ArticleID == articleID);
+        }
+
+        public void EditArticle(Article a)
+        {
+            Entity.Entry(GetArticle(a.ArticleID)).CurrentValues.SetValues(a);
+            Entity.SaveChanges();
+        }
     }
 }

@@ -16,9 +16,19 @@ namespace EnterpriseApp.Models
             ar.AddArticle(a);
         }
 
-        public void DeleteArticle(Article a)
+        public Article GetArticle(int articleID)
         {
-            ar.DeleteArticle(a);
+            return ar.GetArticle(articleID);
+        }
+
+        public void DeleteArticle(int articleID)
+        {
+            ar.DeleteArticle(ar.GetArticle(articleID));
+        }
+
+        public void EditArticle(Article a)
+        {
+            ar.EditArticle(a);
         }
     }
 }

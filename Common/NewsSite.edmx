@@ -16,6 +16,7 @@
           <Property Name="Username" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -89,6 +90,7 @@
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Category1" Relationship="Self.ar_ca_FK" FromRole="Article" ToRole="Category" />
           <NavigationProperty Name="User" Relationship="Self.ar_us_FK" FromRole="Article" ToRole="User" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -156,6 +158,7 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="NewsDBModel.Article">
               <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
                 <ScalarProperty Name="Heading" ColumnName="Heading" />
                 <ScalarProperty Name="SubHeading" ColumnName="SubHeading" />

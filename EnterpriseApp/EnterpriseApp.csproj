@@ -172,6 +172,15 @@
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\EditUser.cshtml" />
+    <Content Include="Views\Users\Author.cshtml" />
+    <Content Include="Views\Articles\Details.cshtml" />
+    <Content Include="Views\CategoryLayouts\_LayoutNational.cshtml" />
+    <Content Include="Views\CategoryLayouts\_LayoutOverseas.cshtml" />
+    <Content Include="Views\CategoryLayouts\_LayoutSports.cshtml" />
+    <Content Include="Views\CategoryLayouts\_LayoutOpinion.cshtml" />
+    <Content Include="Views\CategoryLayouts\_LayoutTravel.cshtml" />
+    <Content Include="Views\CategoryLayouts\_LayoutOdd.cshtml" />
+    <Content Include="Views\Articles\Category.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -181,7 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Articles\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

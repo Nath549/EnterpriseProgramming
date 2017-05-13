@@ -1,0 +1,34 @@
+﻿@model Common.Article
+@{
+    ViewBag.Title = "Category";
+}
+
+@if (ViewBag.Category != null)
+{
+    <h1>@ViewBag.Category.Category1</h1>
+}
+
+@if (ViewBag.LastFeatured != null)
+{
+    foreach (var a in ViewBag.LastFeatured)
+    {
+        <div>
+            <h2>@Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</h2>
+            <a href="@Url.Action("Details", "Articles", new { articleID = a.ArticleID })">
+                <img class="col-lg-5 centered" style="margin-bottom: 30px;" src="@a.Image" />
+            </a>
+        </div>
+    }
+}
+
+@if (ViewBag.LatestArticles != null)
+{
+    foreach (var a in ViewBag.LatestArticles)
+    {
+        <div style="clear: both; margin-left: 15px;">
+            <h4>@Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</h4>
+        </div>
+    }
+}
+
+

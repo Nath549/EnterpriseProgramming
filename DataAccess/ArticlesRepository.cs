@@ -18,6 +18,11 @@ namespace DataAccess
             Entity.SaveChanges();
         }
 
+        public IQueryable<Article> GetArticles()
+        {
+            return Entity.Articles;
+        }
+
         public void DeleteArticle(Article a)
         {
             Entity.Articles.Remove(a);
@@ -33,6 +38,11 @@ namespace DataAccess
         {
             Entity.Entry(GetArticle(a.ArticleID)).CurrentValues.SetValues(a);
             Entity.SaveChanges();
+        }
+
+        public Category GetCategory(int categoryID)
+        {
+            return Entity.Categories.SingleOrDefault(x => x.CategoryID == categoryID);
         }
     }
 }

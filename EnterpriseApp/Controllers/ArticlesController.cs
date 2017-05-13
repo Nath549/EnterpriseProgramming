@@ -89,5 +89,37 @@ namespace EnterpriseApp.Controllers
             ViewBag.Success = "Article succesfully edited!";
             return View();
         }
+
+        public ActionResult Details(int articleID)
+        {
+            ArticlesBL ab = new ArticlesBL();
+
+            Article at = ab.GetArticle(articleID);
+
+            Category ct = ab.GetCategory(at.Category);
+            ViewBag.Category = ct;
+            
+            return View(at);
+        }
+
+        public ActionResult Category(int categoryID)
+        {
+            ArticlesBL ab = new ArticlesBL();
+
+            List<Article> at = (from a in ab.GetArticles()
+                                where a.Category == categoryID
+                                orderby a.Created descending
+                                select a).Skip(1).Take(4).ToList();
+
+            List<Article> tm = (from a in ab.GetArticles()
+                                where a.Category == categoryID
+                                orderby a.Created descending
+                                select a).Take(1).ToList();
+
+            ViewBag.LatestArticles = at;
+            ViewBag.LastFeatured = tm;
+            ViewBag.Category = ab.GetCategory(categoryID);
+            return View();
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace Common
         public string Username { get; set; }
         public string Image { get; set; }
         public string Content { get; set; }
+        public System.DateTime Created { get; set; }
     
         public virtual Category Category1 { get; set; }
         public virtual User User { get; set; }

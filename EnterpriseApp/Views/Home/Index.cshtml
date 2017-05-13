@@ -3,4 +3,244 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    #containerSlider {
+      max-width: 400px;
+      background-color: black;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    #containerSlider div {
+      background-color: white;
+      width: 100%;
+      display: inline-block;
+      display: none;
+    }
+    #containerSlider img {
+      width: 100%;
+      height: auto;
+    }
+
+    button {
+      position: absolute;
+    }
+
+    .next {
+      right: 5px;
+    }
+
+    .prev {
+      left: 5px;
+    }
+
+    .slider {
+        border: 0.5px solid;
+    }
+</style>
+@section Breaking {
+    <div class="alert alert-danger">
+        <span style="font-weight: bold;">Breaking news: Pepe free transfer to Inter almost a certainty!</span>
+    </div>
+}
+
 <h2>Home Page</h2>
+
+<section class="slider">
+    <button class="next">Next</button>
+    <button class="prev">Previous</button>
+    <div class="container" id="containerSlider">
+        @if(ViewBag.GetLast5Featured != null)
+        {
+            foreach(var a in ViewBag.GetLast5Featured)
+            {
+                <div>
+                    <h1>@Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</h1>
+                    <a href="@Url.Action("Details", "Articles", new { articleID = a.ArticleID })">
+                        <img src="@a.Image" />
+                    </a>
+                </div>
+            }
+        }
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="well">
+                <h3>National</h3>
+                @if (ViewBag.LatestNational != null)
+                {
+                    foreach (var ln in ViewBag.LatestNational)
+                    {
+                        <h4>@Html.ActionLink((string)ln.Heading, "Details", "Articles", new { articleID = ln.ArticleID }, null)</h4>
+                        <a href="@Url.Action("Details", "Articles", new { articleID = ln.ArticleID })">
+                            <img src="@ln.Image" width="300" height="200"/>
+                        </a>
+                    }
+
+                }
+                @if (ViewBag.Last5National != null)
+                {
+                    foreach (var a in ViewBag.Last5National)
+                    {
+                        <p>@Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</p>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="well">
+                <h3>Overseas</h3>
+                @if (ViewBag.LatestOverseas != null)
+                {
+                    foreach (var ln in ViewBag.LatestOverseas)
+                    {
+                        <h4>@Html.ActionLink((string)ln.Heading, "Details", "Articles", new { articleID = ln.ArticleID }, null)</h4>
+                        <a href="@Url.Action("Details", "Articles", new { articleID = ln.ArticleID })">
+                            <img src="@ln.Image" width="300" height="200" />
+                        </a>
+                    }
+                }
+                @if (ViewBag.Last5Overseas != null)
+                {
+                    foreach (var a in ViewBag.Last5Overseas)
+                    {
+                        <p>@Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</p>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="well">
+                <h3>Sports</h3>
+                @if (ViewBag.LatestSports != null)
+                {
+                    foreach (var ln in ViewBag.LatestSports)
+                    {
+                        <h4>@Html.ActionLink((string)ln.Heading, "Details", "Articles", new { articleID = ln.ArticleID }, null)</h4>
+                        <a href="@Url.Action("Details", "Articles", new { articleID = ln.ArticleID })">
+                            <img src="@ln.Image" width="300" height="200" />
+                        </a>
+                    }
+                }
+                @if (ViewBag.Last5Sports != null)
+                {
+                    foreach (var a in ViewBag.Last5Sports)
+                    {
+                        <p>@Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</p>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="well">
+                <h3>Opinion</h3>
+                @if (ViewBag.LatestOpinion != null)
+                {
+                    foreach (var ln in ViewBag.LatestOpinion)
+                    {
+                        <h4>@Html.ActionLink((string)ln.Heading, "Details", "Articles", new { articleID = ln.ArticleID }, null)</h4>
+                        <a href="@Url.Action("Details", "Articles", new { articleID = ln.ArticleID })">
+                            <img src="@ln.Image" width="300" height="200" />
+                        </a>
+                    }
+                }
+                @if (ViewBag.Last5Opinion != null)
+                {
+                    foreach (var a in ViewBag.Last5Opinion)
+                    {
+                        <p>@Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</p>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="well">
+                <h3>Travel</h3>
+                @if (ViewBag.LatestTravel != null)
+                {
+                    foreach (var ln in ViewBag.LatestTravel)
+                    {
+                        <h4>@Html.ActionLink((string)ln.Heading, "Details", "Articles", new { articleID = ln.ArticleID }, null)</h4>
+                        <a href="@Url.Action("Details", "Articles", new { articleID = ln.ArticleID })">
+                            <img src="@ln.Image" width="300" height="200" />
+                        </a>
+                    }
+                }
+                @if (ViewBag.Last5Travel != null)
+                {
+                    foreach (var a in ViewBag.Last5Travel)
+                    {
+                        <p>@Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</p>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="well">
+                <h3>Odd</h3>
+                @if (ViewBag.LatestOdd != null)
+                {
+                    foreach (var ln in ViewBag.LatestOdd)
+                    {
+                        <h4>@Html.ActionLink((string)ln.Heading, "Details", "Articles", new { articleID = ln.ArticleID }, null)</h4>
+                        <a href="@Url.Action("Details", "Articles", new { articleID = ln.ArticleID })">
+                            <img src="@ln.Image" width="300" height="200" />
+                        </a>
+                    }
+                }
+                @if (ViewBag.Last5Odd != null)
+                {
+                    foreach (var a in ViewBag.Last5Odd)
+                    {
+                        <p>@Html.ActionLink((string)a.Heading, "Details", "Articles" , new { articleID = a.ArticleID }, null)</p>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section javascript {
+<script type="text/javascript">
+    var currentIndex = 0,
+    items = $('#containerSlider div'),
+    itemAmt = items.length;
+
+    function cycleItems() {
+        var item = $('#containerSlider div').eq(currentIndex);
+        items.hide();
+        item.css('display', 'inline-block');
+    }
+
+    var autoSlide = setInterval(function () {
+        currentIndex += 1;
+        if (currentIndex > itemAmt - 1) {
+            currentIndex = 0;
+        }
+        cycleItems();
+    }, 3000);
+
+    $('.next').click(function () {
+        clearInterval(autoSlide);
+        currentIndex += 1;
+        if (currentIndex > itemAmt - 1) {
+            currentIndex = 0;
+        }
+        cycleItems();
+    });
+
+    $('.prev').click(function () {
+        clearInterval(autoSlide);
+        currentIndex -= 1;
+        if (currentIndex < 0) {
+            currentIndex = itemAmt - 1;
+        }
+        cycleItems();
+    });
+</script>
+}

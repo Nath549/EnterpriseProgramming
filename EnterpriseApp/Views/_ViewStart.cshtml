@@ -1,3 +1,31 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Context.Request.Path.Equals("/category/National", StringComparison.OrdinalIgnoreCase) || Context.Request.Path.Equals("/Articles/Category?categoryID=1", StringComparison.OrdinalIgnoreCase))
+    {
+        Layout = "~/Views/CategoryLayouts/_LayoutNational.cshtml";
+    }
+    else if (Context.Request.Path.StartsWith("/category/Overseas", StringComparison.OrdinalIgnoreCase))
+    {
+        Layout = "~/Views/CategoryLayouts/_LayoutOverseas.cshtml";
+    }
+    else if (Context.Request.Path.StartsWith("/category/Sports", StringComparison.OrdinalIgnoreCase))
+    {
+        Layout = "~/Views/CategoryLayouts/_LayoutSports.cshtml";
+    }
+    else if (Context.Request.Path.StartsWith("/category/Opinion", StringComparison.OrdinalIgnoreCase))
+    {
+        Layout = "~/Views/CategoryLayouts/_LayoutOpinion.cshtml";
+    }
+    else if (Context.Request.Path.StartsWith("/category/Travel", StringComparison.OrdinalIgnoreCase))
+    {
+        Layout = "~/Views/CategoryLayouts/_LayoutTravel.cshtml";
+    }
+    else if (Context.Request.Path.StartsWith("/category/Odd", StringComparison.OrdinalIgnoreCase))
+    {
+        Layout = "~/Views/CategoryLayouts/_LayoutOdd.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
 }

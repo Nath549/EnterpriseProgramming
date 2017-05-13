@@ -115,5 +115,25 @@ namespace DistProg.Controllers
             ViewBag.Success = "User succesfully edited!";
             return View();
         }
+
+        public ActionResult Author(string username)
+        {
+            UsersBL ub = new UsersBL();
+            ArticlesBL ab = new ArticlesBL();
+
+            User um = ub.GetUser(username);
+            List<Article> PreLatestArticles = (from a in ab.GetArticles()
+                                         where a.Username == username
+                                         orderby a.Created descending
+                                         select a).Skip(1).Take(4).ToList();
+            List<Article> PreLatestArticle = (from a in ab.GetArticles()
+                                               where a.Username == username
+                                               orderby a.Created descending
+                                               select a).Take(1).ToList();
+
+            ViewBag.LatestArticles = PreLatestArticles;
+            ViewBag.FirstArticle = PreLatestArticle;
+            return View(um);
+        }
     }
 }

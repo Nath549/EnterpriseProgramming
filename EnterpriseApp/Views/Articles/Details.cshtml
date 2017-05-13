@@ -1,0 +1,26 @@
+﻿@model Common.Article
+@{
+    ViewBag.Title = "Article";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <img src="@Model.Image" style="width: 100%;"/>
+</div>
+
+<br />
+<br />
+
+<div>
+    @if (ViewBag.Category != null)
+    {
+        <h1>@ViewBag.Category.Category1</h1>
+    }
+    <h2>@Model.Heading</h2>
+    <h3>@Model.SubHeading</h3>
+    <h4>Written by: @Html.ActionLink((string)Model.Username, "Author", "Users", new { username = Model.Username }, null)</h4>
+    <br />
+    <p>@Model.Content</p>
+</div>
+
+

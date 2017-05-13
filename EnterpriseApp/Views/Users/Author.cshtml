@@ -1,0 +1,57 @@
+﻿@model Common.User
+@{
+    ViewBag.Title = "Author";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h2>@Model.Name @Model.Surname</h2>
+
+    <div>
+        <span style="font-weight: bold;">Author Name:</span> @Model.Name
+        
+        <br />
+
+        <span style="font-weight: bold;">Author Surname:</span> @Model.Surname
+        
+        <br />
+
+        <span style="font-weight: bold;">Author Email:</span> @Model.Email
+
+        <br />
+        <br />
+
+        <span style="font-weight: bold;">Author Description</span> 
+        <br />
+
+        @Model.Profile
+    </div>
+
+    <br />
+    <br />
+
+    <h1>Articles written by @Model.Name @Model.Surname</h1>
+
+    @if (ViewBag.FirstArticle != null)
+    {
+        foreach (var a in ViewBag.FirstArticle)
+        {
+            <div>
+                <h2>@Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</h2>
+                <a href="@Url.Action("Details", "Articles", new { articleID = a.ArticleID })">
+                    <img class="col-lg-5 centered" style="margin-bottom: 30px;" src="@a.Image"/>
+                </a>
+            </div>
+        }
+    }
+
+    @if(ViewBag.LatestArticles != null)
+    {
+        foreach (var a in ViewBag.LatestArticles)
+        {
+            <div style="clear: both; margin-left: 15px;">
+                <h4>@Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</h4>
+            </div>
+        }
+    }
+
+

@@ -16,6 +16,11 @@ namespace EnterpriseApp.Models
             ar.AddArticle(a);
         }
 
+        public IQueryable<Article> GetArticles()
+        {
+            return ar.GetArticles();
+        }
+
         public Article GetArticle(int articleID)
         {
             return ar.GetArticle(articleID);
@@ -29,6 +34,11 @@ namespace EnterpriseApp.Models
         public void EditArticle(Article a)
         {
             ar.EditArticle(a);
+        }
+
+        public Category GetCategory(int categoryID)
+        {
+            return ar.GetCategory(categoryID);
         }
     }
 }

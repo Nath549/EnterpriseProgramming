@@ -40,5 +40,10 @@ namespace EnterpriseApp.Models
         {
             return ar.GetCategory(categoryID);
         }
+
+        public Category GetCategoryByName(string categoryName)
+        {
+            return ar.GetCategoryByName(categoryName);
+        }
     }
 }

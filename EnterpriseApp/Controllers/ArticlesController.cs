@@ -44,26 +44,6 @@ namespace EnterpriseApp.Controllers
         }
 
         [Authorize]
-        [HttpPost]
-        public ActionResult DeleteArticle(int articleID)
-        {
-            ArticlesBL ab = new ArticlesBL();
-
-            try
-            {
-                ab.DeleteArticle(articleID);
-            }
-            catch(Exception e)
-            {
-                ViewBag.ErrorMessage = e;
-                return View();
-            }
-
-            ViewBag.Success = "Article deleted succesfully!";
-            return View();
-        }
-
-        [Authorize]
         public ActionResult EditArticle(int articleID)
         {
             ArticlesBL ab = new ArticlesBL();
@@ -90,6 +70,7 @@ namespace EnterpriseApp.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Details(int articleID)
         {
             ArticlesBL ab = new ArticlesBL();
@@ -102,24 +83,54 @@ namespace EnterpriseApp.Controllers
             return View(at);
         }
 
-        public ActionResult Category(int categoryID)
+        [Authorize]
+        public ActionResult Category(string categoryName)
         {
             ArticlesBL ab = new ArticlesBL();
 
+            Category ct = ab.GetCategoryByName(categoryName);
+
             List<Article> at = (from a in ab.GetArticles()
-                                where a.Category == categoryID
+                                where a.Category == ct.CategoryID
                                 orderby a.Created descending
                                 select a).Skip(1).Take(4).ToList();
 
             List<Article> tm = (from a in ab.GetArticles()
-                                where a.Category == categoryID
+                                where a.Category == ct.CategoryID
                                 orderby a.Created descending
                                 select a).Take(1).ToList();
 
             ViewBag.LatestArticles = at;
             ViewBag.LastFeatured = tm;
-            ViewBag.Category = ab.GetCategory(categoryID);
+            ViewBag.Category = ct;
             return View();
+        }
+
+        [Authorize]
+        public ActionResult ArticlesArchive()
+        {
+            ArticlesBL ab = new ArticlesBL();
+            IQueryable<Article> am = ab.GetArticles();
+            return View(am);
+        }
+
+        [Authorize]
+        public ActionResult DeleteArticle(int articleID)
+        {
+            ArticlesBL ab = new ArticlesBL();
+
+            try
+            {
+                ab.DeleteArticle(articleID);
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e;
+                return View();
+            }
+
+            ViewBag.Success = "Article deleted succesfully!";
+            return View("ArticlesArchive");
         }
     }
 }

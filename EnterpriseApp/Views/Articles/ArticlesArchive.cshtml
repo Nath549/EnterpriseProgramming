@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Common.Article>
+@{
+    ViewBag.Title = "ArticlesArchive";
+}
+
+<h2>Articles Archive</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Heading</th>
+            <th>Subheading</th>
+            <th>Author</th>
+            <th>Date Created</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Heading)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubHeading)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.ActionLink("DeleteArticle", "DeleteArticle", new { articleID = item.ArticleID })
+            </td>
+            <td>
+                @Html.ActionLink("EditArticle", "EditArticle", new { articleID = item.ArticleID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="warning alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+@if (ViewBag.Success != null)
+{
+    <div class="warning alert-success">
+        @ViewBag.Success
+    </div>
+}

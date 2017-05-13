@@ -29,18 +29,22 @@
                 <li>
                     <a href="/Users/Register">Register</a>
                 </li>
+                
             }
             @if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 <li>
                     <a href="/Users/">Show Authors</a>
                 </li>
-                <li><a href="">National</a></li>
-                <li><a href="">Overseas</a></li>
-                <li><a href="">Sports</a></li>
-                <li><a href="">Opinion</a></li>
-                <li><a href="">Travel</a></li>
-                <li><a href="">Odd</a></li>
+                <li>
+                    <a href="/Articles/ArticlesArchive">Articles Archive</a>
+                </li>
+                <li><a href="category/National">National</a></li>
+                <li><a href="category/Overseas">Overseas</a></li>
+                <li><a href="category/Sports">Sports</a></li>
+                <li><a href="category/Opinion">Opinion</a></li>
+                <li><a href="category/Travel">Travel</a></li>
+                <li><a href="category/Odd">Odd</a></li>
             }
         </ul>
     </nav>

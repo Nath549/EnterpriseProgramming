@@ -44,5 +44,10 @@ namespace DataAccess
         {
             return Entity.Categories.SingleOrDefault(x => x.CategoryID == categoryID);
         }
+
+        public Category GetCategoryByName(string categoryName)
+        {
+            return Entity.Categories.SingleOrDefault(x => x.Category1 == categoryName);
+        }
     }
 }

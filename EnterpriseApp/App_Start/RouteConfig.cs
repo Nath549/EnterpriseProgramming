@@ -20,6 +20,12 @@ namespace EnterpriseApp
            );
 
             routes.MapRoute(
+               "Category",
+               "category/{categoryName}",
+               defaults: new { controller = "Articles", action = "Category" }
+           );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

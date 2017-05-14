@@ -48,6 +48,7 @@ namespace EnterpriseApp.Controllers
         {
             ArticlesBL ab = new ArticlesBL();
             Article ar= ab.GetArticle(articleID);
+
             return View(ar);
         }
 
@@ -58,6 +59,10 @@ namespace EnterpriseApp.Controllers
             ArticlesBL ab = new ArticlesBL();
             try
             {
+                Article b = ab.GetArticle(a.ArticleID);
+                a.Image = b.Image;
+                a.Created = b.Created;
+                a.Username = b.Username;
                 ab.EditArticle(a);
             }
             catch (Exception e)

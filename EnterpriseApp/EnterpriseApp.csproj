@@ -182,6 +182,7 @@
     <Content Include="Views\CategoryLayouts\_LayoutOdd.cshtml" />
     <Content Include="Views\Articles\Category.cshtml" />
     <Content Include="Views\Articles\ArticlesArchive.cshtml" />
+    <Content Include="Views\Articles\EditArticle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

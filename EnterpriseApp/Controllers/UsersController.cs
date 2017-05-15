@@ -124,11 +124,11 @@ namespace DistProg.Controllers
             User um = ub.GetUser(username);
             List<Article> PreLatestArticles = (from a in ab.GetArticles()
                                          where a.Username == username
-                                         orderby a.Created descending
+                                         orderby a.ArticleID descending
                                          select a).Skip(1).Take(4).ToList();
             List<Article> PreLatestArticle = (from a in ab.GetArticles()
                                                where a.Username == username
-                                               orderby a.Created descending
+                                               orderby a.ArticleID descending
                                                select a).Take(1).ToList();
 
             ViewBag.LatestArticles = PreLatestArticles;

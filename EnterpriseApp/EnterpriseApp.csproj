@@ -150,6 +150,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ArticlesBL.cs" />
+    <Compile Include="Models\ArticleUploadModel.cs" />
     <Compile Include="Models\UsersBL.cs" />
     <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -183,6 +184,7 @@
     <Content Include="Views\Articles\Category.cshtml" />
     <Content Include="Views\Articles\ArticlesArchive.cshtml" />
     <Content Include="Views\Articles\EditArticle.cshtml" />
+    <Content Include="Views\Articles\AddArticle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using EnterpriseApp.Models;
 using Common;
+using System.IO;
 
 namespace EnterpriseApp.Controllers
 {
@@ -17,27 +18,52 @@ namespace EnterpriseApp.Controllers
         }
 
         [Authorize]
-        public ActionResult CreateArticle()
+        public ActionResult AddArticle()
         {
             return View();
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult CreateArticle(Article a)
+        public ActionResult AddArticle(ArticleUploadModel a, HttpPostedFileBase file)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    ArticlesBL ab = new ArticlesBL();
-                    ab.AddArticle(a);
-                    ModelState.Clear();
+                    if (file != null)
+                    {
+                        ArticlesBL ab = new ArticlesBL();
+                        Article ar = new Article();
+                        ar.Category = a.Category;
+                        ar.Content = a.Content;
+                        ar.Heading = a.Heading;
+                        if (a.SubHeading != null)
+                        {
+                            ar.SubHeading = a.SubHeading;
+                        }
+                        ar.Username = HttpContext.User.Identity.Name;
+                        string pic = System.IO.Path.GetFileName(file.FileName);
+                        string path = System.IO.Path.Combine(Server.MapPath("~/Images/"), pic);
+
+                        file.SaveAs(path);
+                        ar.Image = "/Images/" + pic;
+
+                        ab.AddArticle(ar);
+
+                        ModelState.Clear();
+
+                        ViewBag.Success = "Article succesfully uploaded!";
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "An image must be uploaded!";
+                    }
                 }
             }
             catch (Exception e)
             {
-                ViewBag.Message = "Error occurred: " + e.ToString();
+                ViewBag.ErrorMessage = "Error occurred: " + e.ToString();
             }
 
             return View();
@@ -61,7 +87,6 @@ namespace EnterpriseApp.Controllers
             {
                 Article b = ab.GetArticle(a.ArticleID);
                 a.Image = b.Image;
-                a.Created = b.Created;
                 a.Username = b.Username;
                 ab.EditArticle(a);
             }
@@ -97,12 +122,12 @@ namespace EnterpriseApp.Controllers
 
             List<Article> at = (from a in ab.GetArticles()
                                 where a.Category == ct.CategoryID
-                                orderby a.Created descending
+                                orderby a.ArticleID descending
                                 select a).Skip(1).Take(4).ToList();
 
             List<Article> tm = (from a in ab.GetArticles()
                                 where a.Category == ct.CategoryID
-                                orderby a.Created descending
+                                orderby a.ArticleID descending
                                 select a).Take(1).ToList();
 
             ViewBag.LatestArticles = at;

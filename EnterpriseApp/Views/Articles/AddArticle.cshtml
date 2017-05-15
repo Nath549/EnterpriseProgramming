@@ -1,12 +1,12 @@
-﻿@model Common.Article
+﻿@model EnterpriseApp.Models.ArticleUploadModel
 @{
-    ViewBag.Title = "EditArticle";
+    ViewBag.Title = "AddArticle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit Article</h2>
+<h2>Add Article</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddArticle", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -48,8 +48,14 @@
             @Html.EditorFor(model => model.Content)
             @Html.ValidationMessageFor(model => model.Content)
         </div>
+        <div class="editor-field">
+            <label for="file">Image</label>
+            <input type="file" name="file" style="width: 100%;" />
+        </div>
+        <br />
+        <br />
         <p>
-            <input type="submit" value="Update" />
+            <input type="submit" value="Add Article" />
         </p>
 
         @if (ViewBag.ErrorMessage != null)

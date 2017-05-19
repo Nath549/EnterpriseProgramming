@@ -11,7 +11,7 @@
             <th>Heading</th>
             <th>Subheading</th>
             <th>Author</th>
-            <th>Date Created</th>
+            <th>Is Breaking</th>
             <th></th>
             <th></th>
         </tr>
@@ -20,7 +20,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Heading)
+                @Html.ActionLink((string)item.Heading, "Details", "Articles", new { articleID = item.ArticleID }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SubHeading)
@@ -29,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.Username)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Created)
+                @Html.DisplayFor(modelItem => item.IsBreaking)
             </td>
             <td>
                 @Html.ActionLink("DeleteArticle", "DeleteArticle", new { articleID = item.ArticleID })

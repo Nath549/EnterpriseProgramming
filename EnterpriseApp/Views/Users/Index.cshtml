@@ -22,7 +22,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Username)
+                @Html.ActionLink((string)item.Username, "Author", "Users", new { username = item.Username }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

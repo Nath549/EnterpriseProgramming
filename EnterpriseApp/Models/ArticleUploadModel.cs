@@ -16,5 +16,6 @@ namespace EnterpriseApp.Models
         public string Content { get; set; }
         [Required(ErrorMessage = "Category is required")]
         public int Category { get; set; }
+        public bool IsBreaking { get; set; }
     }
 }

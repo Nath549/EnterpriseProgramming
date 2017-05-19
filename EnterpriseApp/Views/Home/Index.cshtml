@@ -39,9 +39,15 @@
     }
 </style>
 @section Breaking {
-    <div class="alert alert-danger">
-        <span style="font-weight: bold;">Breaking news: Pepe free transfer to Inter almost a certainty!</span>
-    </div>
+    @if (ViewBag.Breaking != null)
+    {
+        foreach (var a in ViewBag.Breaking)
+        {
+            <div class="alert alert-danger">
+                <span style="font-weight: bold;">Breaking news: @a.Heading</span>
+            </div>
+        }
+    }
 }
 
 <h2>Home Page</h2>

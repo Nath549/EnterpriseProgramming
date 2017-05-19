@@ -14,7 +14,7 @@
 <div>
     @if (ViewBag.Category != null)
     {
-        <h1>@ViewBag.Category.Category1</h1>
+        <h1>@Html.ActionLink((string)ViewBag.Category.Category1, "Category", "Articles", new { categoryName = ViewBag.Category.Category1 }, null)</h1>
     }
     <h2>@Model.Heading</h2>
     <h3>@Model.SubHeading</h3>

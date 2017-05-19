@@ -65,6 +65,10 @@ namespace EnterpriseApp.Controllers
                                        where a.Category == 6
                                        orderby a.ArticleID descending
                                        select a).Take(1).ToList();
+            List<Article> latestBreaking = (from a in ab.GetArticles()
+                                            where a.IsBreaking == true
+                                            orderby a.ArticleID descending
+                                            select a).Take(1).ToList();
             ViewBag.GetLast5Featured = art;
             ViewBag.Last5National = artNational;
             ViewBag.Last5Overseas = artOverseas;
@@ -78,6 +82,7 @@ namespace EnterpriseApp.Controllers
             ViewBag.LatestOpinion = latestOpinion;
             ViewBag.LatestTravel = latestTravel;
             ViewBag.LatestOdd = latestOdd;
+            ViewBag.Breaking = latestBreaking;
             return View();
         }
     }

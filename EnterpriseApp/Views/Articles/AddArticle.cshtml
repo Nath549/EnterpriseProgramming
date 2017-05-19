@@ -52,6 +52,13 @@
             <label for="file">Image</label>
             <input type="file" name="file" style="width: 100%;" />
         </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.IsBreaking)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsBreaking)
+            @Html.ValidationMessageFor(model => model.IsBreaking)
+        </div>
         <br />
         <br />
         <p>

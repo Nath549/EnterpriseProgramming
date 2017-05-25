@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using EnterpriseApp.Models;
 using Common;
 using System.IO;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using EnterpriseApp.Azure;
 
 namespace EnterpriseApp.Controllers
 {
@@ -43,11 +46,25 @@ namespace EnterpriseApp.Controllers
                             ar.SubHeading = a.SubHeading;
                         }
                         ar.Username = HttpContext.User.Identity.Name;
-                        string pic = System.IO.Path.GetFileName(file.FileName);
-                        string path = System.IO.Path.Combine(Server.MapPath("~/Images/"), pic);
+                        CloudStorageAccount cloudStorageAccount = ConnectionString.GetConnectionString();
+                        CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+                        CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("nathanielgrech");
 
-                        file.SaveAs(path);
-                        ar.Image = "/Images/" + pic;
+                        if(cloudBlobContainer.CreateIfNotExists())
+                        {
+                            cloudBlobContainer.SetPermissions(
+                                new BlobContainerPermissions
+                                {
+                                   PublicAccess = BlobContainerPublicAccessType.Blob
+                                });
+                        }
+
+                        string imageName = Guid.NewGuid().ToString() + "-" + Path.GetExtension(file.FileName);
+
+                        CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageName);
+                        cloudBlockBlob.Properties.ContentType = file.ContentType;
+                        cloudBlockBlob.UploadFromStream(file.InputStream);
+                        ar.Image = cloudBlockBlob.Uri.ToString();                  
 
                         ab.AddArticle(ar);
 

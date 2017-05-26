@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NewsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EntProgDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ArticleID" />
@@ -30,7 +30,7 @@
             <PropertyRef Name="Username" />
           </Key>
           <Property Name="Username" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="256" />
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Surname" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Profile" Type="nvarchar(max)" Nullable="false" />
@@ -60,10 +60,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NewsDBModelStoreContainer">
-          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="EntProgDBModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="ndbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="ndbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="ndbo" store:Type="Tables" />
           <AssociationSet Name="ar_ca_FK" Association="Self.ar_ca_FK">
             <End Role="Category" EntitySet="Category" />
             <End Role="Article" EntitySet="Article" />
@@ -76,7 +76,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="NewsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="EntProgDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ArticleID" />
@@ -88,9 +88,9 @@
           <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsBreaking" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Category1" Relationship="Self.ar_ca_FK" FromRole="Article" ToRole="Category" />
           <NavigationProperty Name="User" Relationship="Self.ar_us_FK" FromRole="Article" ToRole="User" />
-          <Property Name="IsBreaking" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -105,7 +105,7 @@
             <PropertyRef Name="Username" />
           </Key>
           <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Surname" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -154,11 +154,10 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NewsDBModelStoreContainer" CdmEntityContainer="NewsDBEntities">
+        <EntityContainerMapping StorageEntityContainer="EntProgDBModelStoreContainer" CdmEntityContainer="NewsDBEntities">
           <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="NewsDBModel.Article">
+            <EntityTypeMapping TypeName="EntProgDBModel.Article">
               <MappingFragment StoreEntitySet="Article">
-                <ScalarProperty Name="IsBreaking" ColumnName="IsBreaking" />
                 <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
                 <ScalarProperty Name="Heading" ColumnName="Heading" />
                 <ScalarProperty Name="SubHeading" ColumnName="SubHeading" />
@@ -166,11 +165,12 @@
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="IsBreaking" ColumnName="IsBreaking" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="NewsDBModel.Category">
+            <EntityTypeMapping TypeName="EntProgDBModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="Category1" ColumnName="Category" />
@@ -178,7 +178,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="NewsDBModel.User">
+            <EntityTypeMapping TypeName="EntProgDBModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

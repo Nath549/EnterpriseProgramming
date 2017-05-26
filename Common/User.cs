@@ -11,7 +11,8 @@ namespace Common
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,12 +20,19 @@ namespace Common
         {
             this.Articles = new HashSet<Article>();
         }
-    
+        
+        [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Surname is required")]
         public string Surname { get; set; }
+        [Required(ErrorMessage = "Profile is required")]
         public string Profile { get; set; }
+        [EmailAddress(ErrorMessage = "Invalid email address entered!")]
+        [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

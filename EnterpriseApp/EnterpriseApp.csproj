@@ -163,7 +163,15 @@
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.js" />
     <Content Include="css\bootstrap.min.css" />
+    <None Include="css\jquery-1.10.2.intellisense.js" />
+    <Content Include="css\bootstrap.min.js" />
+    <Content Include="css\jquery-1.10.2.js" />
+    <Content Include="css\jquery-1.10.2.min.js" />
+    <None Include="css\jquery-1.9.1.intellisense.js" />
+    <Content Include="css\jquery-1.9.1.js" />
+    <Content Include="css\jquery-1.9.1.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
@@ -172,9 +180,14 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="css\bootstrap-theme.min.css.map" />
     <Content Include="css\bootstrap.min.css.map" />
+    <Content Include="css\jquery-1.10.2.min.map" />
+    <Content Include="css\jquery-1.9.1.min.map" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
+    <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="scripts\jquery-1.9.1.js" />
+    <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -224,6 +237,7 @@
     <Content Include="Views\Articles\ArticlesArchive.cshtml" />
     <Content Include="Views\Articles\EditArticle.cshtml" />
     <Content Include="Views\Articles\AddArticle.cshtml" />
+    <Content Include="scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

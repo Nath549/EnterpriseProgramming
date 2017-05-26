@@ -44,7 +44,7 @@
         foreach (var a in ViewBag.Breaking)
         {
             <div class="alert alert-danger">
-                <span style="font-weight: bold;">Breaking news: @a.Heading</span>
+                <span style="font-weight: bold;">Breaking news: @Html.ActionLink((string)a.Heading, "Details", "Articles", new { articleID = a.ArticleID }, null)</span>
             </div>
         }
     }
